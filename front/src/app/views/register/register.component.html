@@ -1,0 +1,110 @@
+<div class="login-page bg-body-secondary">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="#"><b>Tu</b> Aplicación</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Registrar un nuevo miembro</p>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
+        <form (ngSubmit)="onSubmit()">
+          <!-- CAMPO NOMBRE (NUEVO) -->
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre"
+              name="firstName"
+              [(ngModel)]="registrationData.firstName"
+              required
+            />
+            <div class="input-group-text">
+              <span class="bi bi-person"></span>
+            </div>
+          </div>
+
+          <!-- CAMPO APELLIDO (NUEVO) -->
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Apellido"
+              name="lastName"
+              [(ngModel)]="registrationData.lastName"
+              required
+            />
+            <div class="input-group-text">
+              <span class="bi bi-person"></span>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre de Usuario"
+              name="username"
+              [(ngModel)]="registrationData.username"
+              required
+            />
+            <div class="input-group-text">
+              <span class="bi bi-person-fill"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              name="email"
+              [(ngModel)]="registrationData.email"
+              required
+            />
+            <div class="input-group-text">
+              <span class="bi bi-envelope"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Contraseña"
+              name="password"
+              [(ngModel)]="registrationData.password"
+              required
+            />
+            <div class="input-group-text">
+              <span class="bi bi-lock-fill"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Repetir contraseña"
+              name="confirmPassword"
+              [(ngModel)]="registrationData.confirmPassword"
+              required
+            />
+            <div class="input-group-text">
+              <span class="bi bi-lock-fill"></span>
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </div>
+        </form>
+
+        <p class="mt-3 mb-1">
+          <a routerLink="/login" class="text-center">Ya tengo una cuenta</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+</div>

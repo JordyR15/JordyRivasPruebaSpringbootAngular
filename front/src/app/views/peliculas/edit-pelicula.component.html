@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h2>Editar Película</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" [(ngModel)]="pelicula.nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="duracion" class="form-label">Duración (minutos):</label>
+      <input type="number" class="form-control" id="duracion" [(ngModel)]="pelicula.duracion" name="duracion" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="router.navigate(['/peliculas/listar'])">Cancelar</button>
+  </form>
+</div>

@@ -1,0 +1,54 @@
+/*
+ * :host es un selector especial que se aplica al elemento anfitrión del componente
+ * (en este caso, a la etiqueta <app-layout> que contiene toda nuestra aplicación).
+ * Le decimos que ocupe el 100% del espacio disponible en la pantalla.
+ */
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/*
+ * Por defecto, el body de AdminLTE tiene la clase 'layout-fixed'.
+ * Como no podemos aplicarla directamente al body desde aquí,
+ * usamos este truco para que el header y el sidebar se mantengan fijos
+ * mientras el contenido principal se desplaza.
+ */
+.wrapper {
+  height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header,
+.main-sidebar {
+  flex-shrink: 0; /* Evita que el header y el sidebar se encojan */
+}
+
+.content-wrapper {
+  flex-grow: 1; /* Hace que el área de contenido ocupe todo el espacio restante */
+  overflow-y: auto; /* Añade una barra de scroll solo si el contenido es muy largo */
+}
+
+
+/* --- EJEMPLOS DE PERSONALIZACIÓN (OPCIONAL) --- */
+
+/*
+ * Si en el futuro quisieras cambiar el color de fondo del área de contenido,
+ * podrías descomentar estas líneas.
+ */
+/*
+.content-wrapper {
+  background-color: #f0f2f5;
+}
+*/
+
+/*
+ * Si quisieras que el texto del menú lateral fuera un poco más grande.
+ */
+/*
+.nav-sidebar .nav-link p {
+  font-size: 0.95rem;
+}
+*/

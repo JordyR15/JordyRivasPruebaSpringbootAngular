@@ -1,0 +1,89 @@
+<div class="wrapper">
+  <!-- ... (Barra de Navegación Superior y Menú Lateral Vacío) ... -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light"></nav>
+  <aside class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+  <div class="content-wrapper">
+    <!-- ... (Barra Azul Informativa) ... -->
+    <div class="content-header bg-primary text-white">
+      <div class="container-fluid">
+        <div class="row mb-2 align-items-center">
+          <div class="col-sm-6"><h1 class="m-0">Administración del Cine</h1></div>
+          <div class="col-sm-6 text-end">
+            <button class="btn btn-outline-light" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="container-fluid pt-3">
+        <div class="row">
+          <!-- COLUMNA IZQUIERDA: MENÚ DE NAVEGACIÓN -->
+          <div class="col-md-3">
+            <!-- Menú Principal -->
+            <div class="card">
+              <div class="card-header"><h3 class="card-title">Menú Principal</h3></div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item"><a routerLink="/dashboard" routerLinkActive="active" class="nav-link"><i class="nav-icon bi bi-house-door-fill"></i> Inicio</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Menú de Películas -->
+            <div class="card mt-3">
+              <div class="card-header"><h3 class="card-title">Menú Películas</h3></div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item"><a routerLink="/peliculas/agregar" routerLinkActive="active" class="nav-link"><i class="nav-icon bi bi-plus-circle"></i> Agregar Película</a></li>
+                  <li class="nav-item"><a routerLink="/peliculas/listar" routerLinkActive="active" class="nav-link"><i class="nav-icon bi bi-list-ul"></i> Listar Películas</a></li>
+                  <li class="nav-item"><a routerLink="/peliculas/buscar" routerLinkActive="active" class="nav-link"><i class="nav-icon bi bi-search"></i> Buscar Programación</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Menú de Salas -->
+            <div class="card mt-3">
+              <div class="card-header"><h3 class="card-title">Menú Salas</h3></div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item"><a routerLink="/salas/agregar" routerLinkActive="active" class="nav-link"><i class="nav-icon bi bi-plus-circle"></i> Crear Sala</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Menú de Programación -->
+            <div class="card mt-3">
+              <div class="card-header"><h3 class="card-title">Programación</h3></div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item"><a routerLink="/programacion/asignar" routerLinkActive="active" class="nav-link"><i class="nav-icon bi bi-calendar-plus"></i> Asignar Sala</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- === NUEVO MENÚ DE REPORTES AÑADIDO AQUÍ === -->
+            <div class="card mt-3">
+              <div class="card-header"><h3 class="card-title">Reportes</h3></div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item">
+                    <a routerLink="/reportes/por-fecha" routerLinkActive="active" class="nav-link">
+                      <i class="nav-icon bi bi-calendar-check"></i> Películas por Fecha
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA: CONTENEDOR DE VISTAS -->
+          <div class="col-md-9">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

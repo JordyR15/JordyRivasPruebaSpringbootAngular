@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Asignar Película a Sala</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <!-- Selección de Película -->
+        <div class="mb-3">
+          <label for="pelicula" class="form-label">Seleccionar Película:</label>
+          <select id="pelicula" class="form-select" name="peliculaId" [(ngModel)]="asignacion.peliculaId" required>
+            <option [value]="0" disabled>-- Elija una película --</option>
+            <option *ngFor="let pelicula of peliculas" [value]="pelicula.id">{{ pelicula.nombre }}</option>
+          </select>
+        </div>
+
+        <!-- Selección de Sala -->
+        <div class="mb-3">
+          <label for="sala" class="form-label">Seleccionar Sala:</label>
+          <!-- CAMBIOS REALIZADOS EN LA LÍNEA SIGUIENTE (name y ngModel) -->
+          <select id="sala" class="form-select" name="salaCineId" [(ngModel)]="asignacion.salaCineId" required>
+            <option [value]="0" disabled>-- Elija una sala --</option>
+            <option *ngFor="let sala of salas" [value]="sala.id">{{ sala.nombre }}</option>
+          </select>
+        </div>
+
+        <!-- Selección de Fechas -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="fechaPublicacion" class="form-label">Fecha de Publicación:</label>
+            <input type="date" id="fechaPublicacion" class="form-control" name="fechaPublicacion" [(ngModel)]="asignacion.fechaPublicacion" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="fechaFin" class="form-label">Fecha de Fin:</label>
+            <input type="date" id="fechaFin" class="form-control" name="fechaFin" [(ngModel)]="asignacion.fechaFin" required>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <button type="submit" class="btn btn-primary">Asignar Película</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="router.navigate(['/dashboard'])">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</div>

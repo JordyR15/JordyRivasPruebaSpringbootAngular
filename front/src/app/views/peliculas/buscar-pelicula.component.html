@@ -1,0 +1,63 @@
+<div class="card card-outline card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Buscar Películas Programadas</h3>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onBuscar()">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="nombreBusqueda">Nombre de la Película:</label>
+            <input type="text" id="nombreBusqueda" class="form-control" name="nombreBusqueda" [(ngModel)]="criteriosBusqueda.nombre" placeholder="Buscar por nombre...">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="salaBusqueda">Sala de Cine:</label>
+            <select id="salaBusqueda" class="form-select" name="salaBusqueda" [(ngModel)]="criteriosBusqueda.salaId">
+              <option [ngValue]="null">-- Todas las salas --</option>
+              <option *ngFor="let sala of salas" [value]="sala.id">{{ sala.nombre }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <div class="form-group w-100">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-header">
+    <h3 class="card-title">Resultados de la Búsqueda</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Película</th>
+        <th>Duración</th>
+        <th>Fecha Publicación</th>
+        <th>Sala</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let resultado of resultadosBusqueda">
+        <td>{{ resultado.nombre_pelicula }}</td>
+        <td>{{ resultado.duracion }} min</td>
+        <td>{{ resultado.fecha_publicacion }}</td>
+        <td>{{ resultado.nombre_sala }}</td>
+      </tr>
+      <tr *ngIf="resultadosBusqueda.length === 0 && busquedaRealizada">
+        <td colspan="4" class="text-center">No se encontraron películas con los criterios seleccionados.</td>
+      </tr>
+      <tr *ngIf="!busquedaRealizada">
+        <td colspan="4" class="text-center text-muted">Ingrese criterios de búsqueda y presione "Buscar".</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

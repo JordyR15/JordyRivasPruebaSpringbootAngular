@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Crear Nueva Sala de Cine</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre de la Nueva Sala:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            [(ngModel)]="sala.nombre"
+            name="nombre"
+            required
+            placeholder="Ej: Sala Premium, Sala IMAX, etc."
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Sala</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="router.navigate(['/dashboard'])">
+          Cancelar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

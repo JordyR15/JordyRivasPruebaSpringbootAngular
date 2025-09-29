@@ -1,0 +1,74 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <h3 class="card-title">Listado de Películas</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th style="width: 10px">ID</th>
+        <th>Nombre</th>
+        <th>Duración</th>
+        <th style="width: 150px">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Iteramos sobre cada película -->
+      <tr *ngFor="let pelicula of peliculas">
+
+        <!-- Columna ID (siempre visible) -->
+        <td>{{ pelicula.id }}</td>
+
+        <!-- Columna Nombre (con lógica para editar) -->
+        <td>
+          <!-- MODO VISTA: Se muestra si no estamos editando esta fila -->
+          <span *ngIf="editingRowId !== pelicula.id">
+              {{ pelicula.nombre }}
+            </span>
+          <!-- MODO EDICIÓN: Se muestra si SÍ estamos editando esta fila -->
+          <input
+            *ngIf="editingRowId === pelicula.id"
+            type="text"
+            class="form-control"
+            [(ngModel)]="peliculaEditada!.nombre"
+          >
+        </td>
+
+        <!-- Columna Duración (con lógica para editar) -->
+        <td>
+          <!-- MODO VISTA -->
+          <span *ngIf="editingRowId !== pelicula.id">
+              {{ pelicula.duracion }} min
+            </span>
+          <!-- MODO EDICIÓN -->
+          <input
+            *ngIf="editingRowId === pelicula.id"
+            type="number"
+            class="form-control"
+            [(ngModel)]="peliculaEditada!.duracion"
+          >
+        </td>
+
+        <!-- Columna Acciones (con lógica para cambiar botones) -->
+        <td>
+          <!-- MODO VISTA: Botones "Editar" y "Eliminar" -->
+          <div *ngIf="editingRowId !== pelicula.id">
+            <button class="btn btn-sm btn-info" (click)="activarModoEdicion(pelicula)">Editar</button>
+            <button class="btn btn-sm btn-danger ms-2" (click)="eliminarPelicula(pelicula.id)">Eliminar</button>
+          </div>
+          <!-- MODO EDICIÓN: Botones "Guardar" y "Cancelar" -->
+          <div *ngIf="editingRowId === pelicula.id">
+            <button class="btn btn-sm btn-success" (click)="guardarCambios()">Guardar</button>
+            <button class="btn btn-sm btn-secondary ms-2" (click)="cancelarEdicion()">Cancelar</button>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Mensaje si no hay películas -->
+      <tr *ngIf="peliculas.length === 0">
+        <td colspan="4" class="text-center">No hay películas registradas.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

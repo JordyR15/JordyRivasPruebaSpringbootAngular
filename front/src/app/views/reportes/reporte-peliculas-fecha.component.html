@@ -1,0 +1,61 @@
+<div class="card card-outline card-info">
+  <div class="card-header">
+    <h3 class="card-title">Reporte de Películas por Fecha de Publicación</h3>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onBuscar()">
+      <div class="row align-items-end">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="fechaBusqueda">Seleccione una Fecha:</label>
+            <input
+              type="date"
+              id="fechaBusqueda"
+              class="form-control"
+              name="fechaBusqueda"
+              [(ngModel)]="fechaBusqueda"
+            >
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary w-100">Generar Reporte</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  </div>
+</div>
+
+<!-- Sección de Resultados -->
+<div class="card mt-4" *ngIf="busquedaRealizada && !errorMessage">
+  <div class="card-header">
+    <h3 class="card-title">
+      Resultados:
+      <span class="badge bg-success ms-2">{{ peliculasEncontradas.length }}</span>
+      películas encontradas para la fecha seleccionada.
+    </h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th style="width: 10px">ID</th>
+        <th>Nombre de la Película</th>
+        <th>Duración</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let pelicula of peliculasEncontradas">
+        <td>{{ pelicula.id }}</td>
+        <td>{{ pelicula.nombre }}</td>
+        <td>{{ pelicula.duracion }} min</td>
+      </tr>
+      <tr *ngIf="peliculasEncontradas.length === 0">
+        <td colspan="3" class="text-center">No se encontraron películas publicadas en esta fecha.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

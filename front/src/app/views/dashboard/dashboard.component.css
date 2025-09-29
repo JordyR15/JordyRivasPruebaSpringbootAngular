@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/*
+ * Este es el ajuste clave. Forzamos al wrapper a usar un alto de 100% de la ventana
+ * y a no salirse de la pantalla, lo que permite que el scroll interno funcione.
+ */
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Evita el doble scroll */
+}
+
+.main-header,
+.main-sidebar {
+  flex-shrink: 0;
+}
+
+/*
+ * Hacemos que el área de contenido principal ocupe el espacio restante
+ * y que tenga su propio scroll si el contenido es muy largo.
+ */
+.content-wrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/*
+ * Pequeño ajuste para que el texto del título en la barra azul
+ * sea un poco más grande y legible.
+ */
+.content-header h1 {
+  font-size: 1.5rem;
+}

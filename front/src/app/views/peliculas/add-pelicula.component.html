@@ -1,0 +1,32 @@
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Agregar Nueva Película</h3>
+  </div>
+
+  <!-- El formulario ahora llama a onSubmit() y muestra errores -->
+  <form (ngSubmit)="onSubmit()">
+    <div class="card-body">
+
+      <!-- Mensaje de Error -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-group">
+        <label for="nombrePelicula">Nombre</label>
+        <!-- Vinculado con [(ngModel)] -->
+        <input type="text" class="form-control" id="nombrePelicula" name="nombre"
+               placeholder="Ingrese el nombre de la película" [(ngModel)]="pelicula.nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="duracionPelicula">Duración (minutos)</label>
+        <!-- Vinculado con [(ngModel)] -->
+        <input type="number" class="form-control" id="duracionPelicula" name="duracion"
+               placeholder="Ingrese la duración" [(ngModel)]="pelicula.duracion" required>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+</div>
